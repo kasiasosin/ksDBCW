@@ -6,20 +6,21 @@
     <title>Vehicle search</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
-    <body>
-        <header> 
-            <h1> Vehicle Lookup</h1>
+    <body class = "baselayout">
+        <header class = "topbar"> 
+            <h1> Vehicle Search</h1>
+            <h3> This page allows you to search for a vehicle</h3>
         </header>
-        <main>
-            <h2> This page allows you to search for a vehicle</h2>
+        <main class = "maincontent">
+            <p> Search by Vehicle Number: </p>
             <form>
-                <input type = "search" name = "q" placeholder = "Search Query"/>
+                <input type = "search" name = "q" placeholder = "Vehicle Registration"/>
                 <button name="VSButton" type="submit" value="SUBMIT">SUBMIT</button>
 
             </form>
-            <img src='vehicle.webp' alt='top banner' height = 200 width = 300/>
+            <img src='vehicle.webp' alt='top banner' height = 300 width = 390/>
         </main>
-        <aside>
+        <aside class = "sidebar">
             <h2> Navigation Bar </h2>
             <nav>
                 <ul>
@@ -29,7 +30,7 @@
                 </ul>
             </nav>
         </aside>
-        <footer>
+        <footer class = "footerbit">
             <p> Website created by Kasia Sosin &copy; 2024 </p>
         </footer>
     </body>

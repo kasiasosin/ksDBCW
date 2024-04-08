@@ -6,20 +6,24 @@
     <title>Person Lookup</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
-    <body>
-        <header> 
+    <body class = "baselayout">
+        <header class = "topbar"> 
             <h1> People Search</h1>
+            <h3> This page allows you to search for a person</h3>
         </header>
-        <main>
-            <h2> This page allows you to search for a person</h2>
+        <main class = "maincontent">
             <form>
-                <input type = "search" name = "q" placeholder = "Search Query"/>
+                <p> Search by Name: </p>
+                <input type = "search" name = "q" placeholder = "Person Name"/>
                 <button name="PSButton" type="submit" value="SUBMIT">SUBMIT</button>
 
+                <p> Search by Vehicle Number:</p>
+                <input type = "search" name = "q" placeholder = "Vehicle Registration"/>
+                <button name="PSButton" type="submit" value="SUBMIT">SUBMIT</button>
             </form>
-            <img src='person.jpg' alt='top banner' height = 200 width = 400/>
+            <img src='person.jpg' alt='top banner' height = 200 width = 390/>
         </main>
-        <aside>
+        <aside class = "sidebar">
             <h2> Navigation Bar </h2>
             <nav>
                 <ul>
@@ -29,7 +33,7 @@
                 </ul>
             </nav>
         </aside>
-        <footer>
+        <footer class = "footerbit">
             <p> Website created by Kasia Sosin &copy; 2024 </p>
         </footer>
     </body>

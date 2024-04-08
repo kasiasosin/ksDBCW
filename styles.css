@@ -42,7 +42,7 @@ body {
     border: 3px solid;
 }
 
-.footer {
+.footerbit {
     grid-column: 1/8;
     grid-row: 6;
     border: 3px solid;
