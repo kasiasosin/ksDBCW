@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index Page</title>
+    <title>Vehicle search</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
     <body>
-        <header>
-            <h1> DBI COURSEWORK 2 HOMEPAGE </h1>
+        <header> 
+            <h1> Vehicle Lookup</h1>
         </header>
         <main>
-            <article>
-                <p>This is my mainpage where you can find links to other pages to access important information.</p>
-                <img src='car1.jpg' alt='top banner' height = 300 width = 600/> 
-            </article>
+            <h2> This page allows you to search for a vehicle</h2>
+            <form>
+                <input type = "search" name = "q" placeholder = "Search Query"/>
+                <button name="VSButton" type="submit" value="SUBMIT">SUBMIT</button>
+
+            </form>
+            <img src='vehicle.webp' alt='top banner' height = 200 width = 300/>
         </main>
-        <aside class = "Navigation">
+        <aside>
             <h2> Navigation Bar </h2>
             <nav>
-                <ul class = "customlist">
+                <ul>
+                    <li> <a href = 'index.html'>Home</a></li>
                     <li> <a href = 'People search.html'>People search</a></li>
-                    <li> <a href = 'Vehicle search'>Vehicle search</a></li>
                     <li> <a href = 'New Vehicle.html'>Enter New Vehicle</a></li>
                 </ul>
             </nav>
         </aside>
-
         <footer>
             <p> Website created by Kasia Sosin &copy; 2024 </p>
         </footer>
-
     </body>
 </html>

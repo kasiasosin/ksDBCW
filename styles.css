@@ -1,0 +1,54 @@
+h1 {
+    color: darkblue;
+    background-color: rgb(196, 196, 249);
+    font-size: 3em;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h2 {
+    color: darkblue;
+    background-color: rgb(196, 196, 249);
+    font-size: 2em;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;  
+}
+
+.customlist {
+    /* to get rid of the bullet points */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #89CFF0;
+}
+
+.baselayout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.topbar {
+    grid-column: 1/8;
+    grid-row: 1;
+    border: 3px solid;
+}
+
+.sidebar {
+    grid-column: 1/2;
+    grid-row: 2/6;
+    border: 3px solid;
+}
+
+.footer {
+    grid-column: 1/8;
+    grid-row: 6;
+    border: 3px solid;
+}
+.maincontent {
+    grid-column: 2/8;
+    grid-row: 2/6;
+    border: 3px solid;
+}
