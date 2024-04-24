@@ -42,21 +42,29 @@ body {
     grid-column: 1/8;
     grid-row: 1;
     border: 3px solid;
+    margin: 1;
+    padding: 1; 
 }
 
 .sidebar {
     grid-column: 1/2;
     grid-row: 2/6;
     border: 3px solid;
+    margin: 1;
+    padding: 1; 
 }
 
 .footerbit {
     grid-column: 1/8;
     grid-row: 6;
     border: 3px solid;
+    margin: 1;
+    padding: 1; 
 }
 .maincontent {
     grid-column: 2/8;
     grid-row: 2/6;
     border: 3px solid;
+    margin: 1;
+    padding: 1; 
 }

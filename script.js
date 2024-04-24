@@ -2,20 +2,29 @@
 import {createClient} from
 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 // // Create a single supabase client for interacting with your database
-const supabase = createClient('https://hcoewqxfecydeqseabxl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjb2V3cXhmZWN5ZGVxc2VhYnhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI2NzQ1NTAsImV4cCI6MjAyODI1MDU1MH0.syQYXuGh4nRDW6h0Yp0FJdxQ5LuI0MTTrNnI0FblxYI')
+const supabase = createClient('https://hcoewqxfecydeqseabxl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhjb2V3cXhmZWN5ZGVxc2VhYnhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTI2NzQ1NTAsImV4cCI6MjAyODI1MDU1MH0.syQYXuGh4nRDW6h0Yp0FJdxQ5LuI0MTTrNnI0FblxYI');
 
 
-// search for person information through name
+//search for person information through name
+
 var nameButton = document.getElementById("nameButton");
 if (nameButton){
     nameButton.addEventListener("click", async () => {
         console.log("Button was clicked!");
         var nameText = document.getElementById("searchName");
-        if (nameText == null || nameText == ""){
+        console.log("The text: " + nameText.value);
+        if (nameText.value == null || nameText.value == ""){
             console.log("Error: Search box is empty");
         }else{
-            const {data, error} =  await supabase.from('People').select('Index', 'Name', 'Address', 'DOB', 'LicenseNumber').eq('Name', nameText);
-            console.log("The data: " + data);
+            const {data, error} =  await supabase.from('People').select('PersonID, Name, Address, DOB, LicenseNumber').ilike('Name', "%"+nameText.value+"%");
+            
+            // document.getElementById("maincontent").innerHTML = ("The data: ", data);
+
+            // var dataValue = async() => data.value;
+
+            // if (data.value == null || data.value == "") {
+            //     console.log("Error - no results returned");
+            // }
         }
 
     });
@@ -23,37 +32,63 @@ if (nameButton){
 }
 
 
+// search for person information through name
+// var nameButton = document.getElementById("nameButton");
+// if (nameButton){
+//     nameButton.addEventListener("click", async () => {
+//         console.log("Button was clicked!");
+//         var nameText = document.getElementById("searchName");
+//         if (nameText == null || nameText == ""){
+//             console.log("Error: Search box is empty");
+//         }else{
+//             const {data, error} =  await supabase.from('People').select('Index', 'Name', 'Address', 'DOB', 'LicenseNumber').eq('Name', nameText);
+//             console.log("The data: " + data);
+//         }
+
+//     });
+
+// }
+
+
 
 // search for person information through license number
+
 var vehicleButton = document.getElementById("vehicleButton");
 if (vehicleButton){
     vehicleButton.addEventListener("click", async () => {
         console.log("Button was clicked!");
         var vehicleText = document.getElementById("searchVehicle");
-        if (vehicleText == null || vehicleText == ""){
+        console.log("The text: " + vehicleText.value);
+        if (vehicleText.value == null || vehicleText.value == ""){
             console.log("Error: Search box is empty");
         }else{
-            const {data, error} = await supabase.from('People').select('Index', 'Name', 'Address', 'DOB', 'LicenseNumber').eq('LicenseNumber', vehicleText);
-            console.log("The data: " + data);
-
+            const {data, error} =  await supabase.from('People').select('PersonID, Name, Address, DOB, LicenseNumber').ilike('LicenseNumber', "%"+vehicleText.value+"%");
+            console.log("The data: ", data);
+            // if (data.value == null || data.value == "") {
+            //     console.log("Error - no results returned");
+            // }
         }
 
     });
 
 }
 
-// search for vehicle information through license number
-var vehicleButton2 = document.getElementById("vehicleButton");
-if (vehicleButton2) {
-    vehicleButton2.addEventListener("click", async () => {
+//search for vehicle information through license number
+
+var vehicleButtonV = document.getElementById("vehicleButtonV");
+if (vehicleButtonV){
+    vehicleButtonV.addEventListener("click", async () => {
         console.log("Button was clicked!");
-        var vehicleText2 = document.getElementById("searchVehicle2");
-        if (vehicleText2 == null || vehicleText2 == ""){
+        var vehicleTextV = document.getElementById("searchVehicleV");
+        console.log("The text: " + vehicleTextV.value);
+        if (vehicleTextV.value == null || vehicleTextV.value == ""){
             console.log("Error: Search box is empty");
         }else{
-            const {data, error} = await supabase.from('Vehicles').select('VehicleID', 'Make', 'Model', 'Colour', 'OwnerID').eq('LicenseNumber', vehicleText2);
-            console.log("The data: " + data);
-
+            const {data, error} =  await supabase.from('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleTextV.value+"%");
+            console.log("The data: ", data);
+            // if (data.value == null || data.value == "") {
+            //     console.log("Error - no results returned");
+            // }
         }
 
     });
@@ -61,25 +96,28 @@ if (vehicleButton2) {
 }
 
 // NEW VEHICLE CODE
-// var NVButton = document.getElementById("NVButton");
-// if (NVButton) {
-// NVButton.addEventListener("click", async () => {
-//     console.log("Button was clicked!");
-//     var RegNum = document.getElementById("RegNum");
-//     var RegNum = document.getElementById("Make");
-//     var RegNum = document.getElementById("Model");
-//     var RegNum = document.getElementById("Colour");
-//     var RegNum = document.getElementById("Owner");
-//     if (RegNum == "" || Make == "" || Model == "" || Colour == "" || Owner == "") {
-//         console.log("Error: Search box is empty");
-//     }else{
-//         const {data, error} = await supabase.from('Vehicles').select('VehicleID', 'Make', 'Model', 'Colour', 'OwnerID').eq('LicenseNumber', vehicleText2);
-//         console.log("The data: " + data);
 
-//     }
-// });
+var NVButton = document.getElementById("NVButton");
+if (NVButton){
+    NVButton.addEventListener("click", async () => {
+        console.log("Button was clicked!");
 
-// }
+        var NVTextReg = document.getElementById("RegNum");
+        var NVTextMake = document.getElementById("Make");
+        var NVTextModel = document.getElementById("Model");
+        var NVTextColour = document.getElementById("Colour");
+        var NVTextOwner = document.getElementById("Owner");
+
+        if (NVTextReg.value == null || NVTextReg.value == "" || NVTextMake.value == null || NVTextMake.value == "" || NVTextModel.value == null || NVTextModel.value == "" || NVTextColour.value == null || NVTextColour.value == "" || NVTextOwner.value == null || NVTextMake.value == ""){
+            console.log("Error: There is missing information");
+        }else{
+            //const {data, error} =  await supabase.insert('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleTextV.value+"%");
+            //console.log("The data: ", data);
+        }
+
+    });
+
+}
 
 
 
