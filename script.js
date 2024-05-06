@@ -17,7 +17,8 @@ if (nameButton){
             console.log("Error: Search box is empty");
         }else{
             const {data, error} =  await supabase.from('People').select('PersonID, Name, Address, DOB, LicenseNumber').ilike('Name', "%"+nameText.value+"%");
-            
+            console.log("The data: ", data);
+
             // document.getElementById("maincontent").innerHTML = ("The data: ", data);
 
             // var dataValue = async() => data.value;
@@ -111,13 +112,15 @@ if (NVButton){
         if (NVTextReg.value == null || NVTextReg.value == "" || NVTextMake.value == null || NVTextMake.value == "" || NVTextModel.value == null || NVTextModel.value == "" || NVTextColour.value == null || NVTextColour.value == "" || NVTextOwner.value == null || NVTextMake.value == ""){
             console.log("Error: There is missing information");
         }else{
-            //const {data, error} =  await supabase.insert('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleTextV.value+"%");
-            //console.log("The data: ", data);
+            const {data, error} =  await supabase.insert('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleTextV.value+"%");
+            console.log("The data: ", data);
         }
 
     });
 
 }
+
+
 
 
 

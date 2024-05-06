@@ -33,7 +33,7 @@ body {
 
 .baselayout {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 20% 80%;
     gap: 10px;
     grid-auto-rows: minmax(100px, auto);
 }
@@ -42,29 +42,30 @@ body {
     grid-column: 1/8;
     grid-row: 1;
     border: 3px solid;
-    margin: 1;
-    padding: 1; 
+    margin: 5px;
+    padding: 5px; 
+}
+
+.maincontent {
+    grid-column: 2/8;
+    grid-row: 2/6;
+    border: 3px solid;
+    margin: 2px;
+    padding: 10px; 
 }
 
 .sidebar {
     grid-column: 1/2;
     grid-row: 2/6;
     border: 3px solid;
-    margin: 1;
-    padding: 1; 
+    margin: 2px;
+    padding: 1px; 
 }
 
 .footerbit {
     grid-column: 1/8;
     grid-row: 6;
     border: 3px solid;
-    margin: 1;
-    padding: 1; 
-}
-.maincontent {
-    grid-column: 2/8;
-    grid-row: 2/6;
-    border: 3px solid;
-    margin: 1;
-    padding: 1; 
+    margin: 5px;
+    padding: 2px; 
 }
