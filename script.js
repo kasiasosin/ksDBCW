@@ -94,57 +94,59 @@ if (vehicleButton){
             if (data != ""){
                 document.getElementById("message").innerHTML = ("Search successful");
 
-                
-                var node1;
-                var node2;
-                var node3;
-                var node4;
-                var node5;
 
-                var p1 = document.createElement('p');
-                var p2 = document.createElement('p');
-                var p3 = document.createElement('p');
-                var p4 = document.createElement('p');
-                var p5 = document.createElement('p');
+    
 
-                let row = document.createElement('div');
 
                 data.forEach((currItem) => {
 
-                    console.log(currItem);
+                    // create div 
+                    // add text to div
+                    // add div to page
+                    let row = document.createElement('div');
+                    row.innerHTML = ("Vehicle ID: " + currItem.VehicleID + "<br>Vehicle Make: " + currItem.Make + "<br>Vehicle Model: " + currItem.Model + "<br>Vehicle Colour: " + currItem.Colour + "<br>Vehicle Owner ID: " + currItem.OwnerID)
+                    let row2 = document.createElement('div');
+                    row2.innerHTML = ("<br>")
+                    document.getElementById('results').appendChild(row);
+                    document.getElementById('results').appendChild(row2);
+
+
+
+                    // var p1 = document.createElement('p');
+
                    
 
-                    node1 = currItem.VehicleID;
-                    node2 = currItem.Make;
-                    node3 = currItem.Model;
-                    node4 = currItem.Colour;
-                    node5 = currItem.OwnerID;
+                    // node1 = currItem.VehicleID;
+                    // node2 = currItem.Make;
+                    // node3 = currItem.Model;
+                    // node4 = currItem.Colour;
+                    // node5 = currItem.OwnerID;
 
 
-                    var elem1 = document.createTextNode(node1);
-                    p1.appendChild(elem1);
+                    // var elem1 = document.createTextNode(node1);
+                    // p1.appendChild(elem1);
 
 
-                    var elem2 = document.createTextNode(node2);
-                    p2.appendChild(elem2);
+                    // var elem2 = document.createTextNode(node2);
+                    // p2.appendChild(elem2);
 
-                    var elem3 = document.createTextNode(node3);
-                    p3.appendChild(elem3);
+                    // var elem3 = document.createTextNode(node3);
+                    // p3.appendChild(elem3);
 
-                    var elem4 = document.createTextNode(node4);
-                    p4.appendChild(elem4);
+                    // var elem4 = document.createTextNode(node4);
+                    // p4.appendChild(elem4);
 
-                    var elem5 = document.createTextNode(node5);
-                    p5.appendChild(elem5);
+                    // var elem5 = document.createTextNode(node5);
+                    // p5.appendChild(elem5);
 
-                    //document.getElementById('p1').innerText(node1);
-                    //document.getElementById('p1').innerText(node1);
-                    //document.getElementById('p1').innerText(node1);
-                    //document.getElementById('p1').innerText(node1);
+                    // //document.getElementById('p1').innerText(node1);
+                    // //document.getElementById('p1').innerText(node1);
+                    // //document.getElementById('p1').innerText(node1);
+                    // //document.getElementById('p1').innerText(node1);
 
-                    row += (p1 + p2 + p3 + p4 + p5);
+                    // row += (p1 + p2 + p3 + p4 + p5);
 
-                    document.getElementById('results').appendChild(row);
+                    // document.getElementById('results').appendChild(row);
 
 
                 });
