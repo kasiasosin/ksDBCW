@@ -8,25 +8,31 @@
     <script src="script.js" type="module" defer></script>
 
 </head>
-    <body class = "baselayout">
+    <body class = "container">
         <header class = "topbar"> 
             <h1> Vehicle Search</h1>
             <nav>
                 <ul class = "customlist">
                     <li> <a href = 'index.html'>Home</a></li>
                     <li> <a href = 'People-search.html'>People search</a></li>
-                    <li> <a href = 'New-vehicle.html'>Enter New Vehicle</a></li>
+                    <li> <a href = 'Add-a-vehicle.html'>Add a Vehicle</a></li>
                 </ul>
             </nav>
         </header>
         <main class = "maincontent">
-            <h3> Enter the info below:</h3>
+            <h2> Enter the info below:</h3>
             <p> Search by Vehicle Number: </p>
-            <input id = "searchVehicleV" type = "text" placeholder = "Vehicle Registration"/>
-            <button id = "vehicleButtonV" type = "button" value="SUBMIT">SUBMIT</button>
+            <input id = "rego" type = "text" placeholder = "Vehicle Registration"/>
+            <button id = "vehicleButton" type = "button" value = "Submit">Submit</button>
+
+            <table id = "message">
+            </table>
+            <table id = "results">
+            </table>
+
         </main>
         <aside class = "sidebar">
-            <img src='vehicle.webp' alt='top banner' height = 200 width = 280/>
+            <img class = "img" src='vehicle.webp' alt='top banner' height = 200 width = 280/>
         </aside>
         <footer class = "footerbit">
             <p> Website created by Kasia Sosin &copy; 2024 </p>

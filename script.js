@@ -7,25 +7,64 @@ const supabase = createClient('https://hcoewqxfecydeqseabxl.supabase.co', 'eyJhb
 
 //search for person information through name
 
-var nameButton = document.getElementById("nameButton");
+var nameButton = document.getElementById("button1");
 if (nameButton){
     nameButton.addEventListener("click", async () => {
         console.log("Button was clicked!");
-        var nameText = document.getElementById("searchName");
+        var nameText = document.getElementById("name");
+        var vehicleText = document.getElementById("license");
         console.log("The text: " + nameText.value);
-        if (nameText.value == null || nameText.value == ""){
-            console.log("Error: Search box is empty");
-        }else{
+
+        // check if both text boxes are full (not allowed)
+        if (vehicleText.value != "" && nameText.value != ""){
+            document.getElementById("message").innerHTML = ("Error - both text fields are full");
+            console.log("both text boxes are full");
+            document.getElementById("results").innerHTML = ("");
+
+
+        }
+        // check if both text boxes are empty (not allowed)
+        else if (nameText.value == "" && vehicleText.value == ""){
+            document.getElementById("message").innerHTML = ("Error - both text fields are empty");
+            console.log("both text boxes are empty");
+            document.getElementById("results").innerHTML = ("");
+
+
+        // if vehicle text has data then search...
+        } else if (vehicleText.value != "" && nameText.value == ""){
+            console.log("name text empty");
+            console.log("searching for vehicle data...");
+            const {data, error} =  await supabase.from('People').select('PersonID, Name, Address, DOB, LicenseNumber').ilike('LicenseNumber', "%"+vehicleText.value+"%");
+            
+            if (data != ""){
+                document.getElementById("message").innerHTML = ("Search successful");
+                document.getElementById("results").innerHTML = (data);
+                console.log("The data: ", data);
+
+            } else {
+                console.log("no data");
+                document.getElementById("message").innerHTML = ("No result found");
+
+            }
+        
+        // if name text has data then search...
+        }else {
+            console.log("vehicle text empty");
+            console.log("searching for name data...");
             const {data, error} =  await supabase.from('People').select('PersonID, Name, Address, DOB, LicenseNumber').ilike('Name', "%"+nameText.value+"%");
-            console.log("The data: ", data);
+            
+            if (data != ""){
+                document.getElementById("message").innerHTML = ("Search successful");
+                document.getElementById("results").innerHTML = (data);
+                console.log("The data: ", data);
 
-            // document.getElementById("maincontent").innerHTML = ("The data: ", data);
+            } else {
+                console.log("no data");
+                document.getElementById("message").innerHTML = ("No result found");
 
-            // var dataValue = async() => data.value;
+            }
 
-            // if (data.value == null || data.value == "") {
-            //     console.log("Error - no results returned");
-            // }
+
         }
 
     });
@@ -33,63 +72,97 @@ if (nameButton){
 }
 
 
-// search for person information through name
-// var nameButton = document.getElementById("nameButton");
-// if (nameButton){
-//     nameButton.addEventListener("click", async () => {
-//         console.log("Button was clicked!");
-//         var nameText = document.getElementById("searchName");
-//         if (nameText == null || nameText == ""){
-//             console.log("Error: Search box is empty");
-//         }else{
-//             const {data, error} =  await supabase.from('People').select('Index', 'Name', 'Address', 'DOB', 'LicenseNumber').eq('Name', nameText);
-//             console.log("The data: " + data);
-//         }
 
-//     });
-
-// }
-
-
-
-// search for person information through license number
+//search for vehicle information through license number
 
 var vehicleButton = document.getElementById("vehicleButton");
 if (vehicleButton){
     vehicleButton.addEventListener("click", async () => {
         console.log("Button was clicked!");
-        var vehicleText = document.getElementById("searchVehicle");
-        console.log("The text: " + vehicleText.value);
-        if (vehicleText.value == null || vehicleText.value == ""){
+        var vehicleText1 = document.getElementById("rego");
+        console.log("The text: " + vehicleText1.value);
+        if (vehicleText1.value == ""){
             console.log("Error: Search box is empty");
+            document.getElementById("message").innerHTML = ("Error - there is missing information");
+            document.getElementById("results").innerHTML = ("");
+
+            
         }else{
-            const {data, error} =  await supabase.from('People').select('PersonID, Name, Address, DOB, LicenseNumber').ilike('LicenseNumber', "%"+vehicleText.value+"%");
-            console.log("The data: ", data);
-            // if (data.value == null || data.value == "") {
-            //     console.log("Error - no results returned");
-            // }
-        }
+            console.log("searching for vehicle data...");
+            const {data, error} =  await supabase.from('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleText1.value+"%");
+            
+            if (data != ""){
+                document.getElementById("message").innerHTML = ("Search successful");
 
-    });
+                
+                var node1;
+                var node2;
+                var node3;
+                var node4;
+                var node5;
 
-}
+                var p1 = document.createElement('p');
+                var p2 = document.createElement('p');
+                var p3 = document.createElement('p');
+                var p4 = document.createElement('p');
+                var p5 = document.createElement('p');
 
-//search for vehicle information through license number
+                let row = document.createElement('div');
 
-var vehicleButtonV = document.getElementById("vehicleButtonV");
-if (vehicleButtonV){
-    vehicleButtonV.addEventListener("click", async () => {
-        console.log("Button was clicked!");
-        var vehicleTextV = document.getElementById("searchVehicleV");
-        console.log("The text: " + vehicleTextV.value);
-        if (vehicleTextV.value == null || vehicleTextV.value == ""){
-            console.log("Error: Search box is empty");
-        }else{
-            const {data, error} =  await supabase.from('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleTextV.value+"%");
-            console.log("The data: ", data);
-            // if (data.value == null || data.value == "") {
-            //     console.log("Error - no results returned");
-            // }
+                data.forEach((currItem) => {
+
+                    console.log(currItem);
+                   
+
+                    node1 = currItem.VehicleID;
+                    node2 = currItem.Make;
+                    node3 = currItem.Model;
+                    node4 = currItem.Colour;
+                    node5 = currItem.OwnerID;
+
+
+                    var elem1 = document.createTextNode(node1);
+                    p1.appendChild(elem1);
+
+
+                    var elem2 = document.createTextNode(node2);
+                    p2.appendChild(elem2);
+
+                    var elem3 = document.createTextNode(node3);
+                    p3.appendChild(elem3);
+
+                    var elem4 = document.createTextNode(node4);
+                    p4.appendChild(elem4);
+
+                    var elem5 = document.createTextNode(node5);
+                    p5.appendChild(elem5);
+
+                    //document.getElementById('p1').innerText(node1);
+                    //document.getElementById('p1').innerText(node1);
+                    //document.getElementById('p1').innerText(node1);
+                    //document.getElementById('p1').innerText(node1);
+
+                    row += (p1 + p2 + p3 + p4 + p5);
+
+                    document.getElementById('results').appendChild(row);
+
+
+                });
+
+
+                    //var textnode = document.createTextNode("Water");
+                    //node.appendChild(textnode);
+                    //document.getElementById("myList").appendChild(node);
+
+                        
+
+                        
+                } else {
+                    console.log("no data");
+                    document.getElementById("message").innerHTML = ("No result found");
+                    document.getElementById("results").innerHTML = ("");
+
+            }
         }
 
     });
@@ -103,17 +176,25 @@ if (NVButton){
     NVButton.addEventListener("click", async () => {
         console.log("Button was clicked!");
 
-        var NVTextReg = document.getElementById("RegNum");
-        var NVTextMake = document.getElementById("Make");
-        var NVTextModel = document.getElementById("Model");
-        var NVTextColour = document.getElementById("Colour");
-        var NVTextOwner = document.getElementById("Owner");
+        var regoText = document.getElementById("rego");
+        var makeText = document.getElementById("make");
+        var modelText = document.getElementById("model");
+        var colourText = document.getElementById("colour");
+        var ownerText = document.getElementById("owner");
 
-        if (NVTextReg.value == null || NVTextReg.value == "" || NVTextMake.value == null || NVTextMake.value == "" || NVTextModel.value == null || NVTextModel.value == "" || NVTextColour.value == null || NVTextColour.value == "" || NVTextOwner.value == null || NVTextMake.value == ""){
+        if (regoText.value == "" || makeText == "" || modelText.value == "" || colourText == "" || ownerText.value == ""){
             console.log("Error: There is missing information");
+            document.getElementById("message").innerHTML = ("Error - there is missing information");
+
         }else{
-            const {data, error} =  await supabase.insert('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleTextV.value+"%");
-            console.log("The data: ", data);
+            console.log("checking whether user exists already...")
+            const {data, error} =  await supabase.from('People').select('Name').ilike('Name', "%"+ownerText.value+"%");
+           
+            // if owner already exists...
+            if (data != ""){
+                console.log("user exists already");
+                document.getElementById("results").innerHTML = ("User found: " + data);
+        }
         }
 
     });
@@ -123,6 +204,7 @@ if (NVButton){
 
 
 
+//                const {data1, error1} =  await supabase.insert('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleTextV.value+"%");
 
 
 

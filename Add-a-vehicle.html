@@ -8,9 +8,9 @@
     <script src="script.js" type="module" defer></script>
 
 </head>
-<body class = "baselayout">
+<body class = "container">
     <header class = "topbar"> 
-        <h1> New Vehicle</h1>
+        <h1> Add a Vehicle</h1>
         <nav>
             <ul class = "customlist">
                 <li> <a href = 'index.html'>Home</a></li>
@@ -20,16 +20,22 @@
         </nav>
     </header>
     <main class = "maincontent">
-        <h3> Enter the required information below:</h3>
-            <input type = "search" id = "RegNum" placeholder = "Registration Number"/>
-            <input type = "search" id = "Make" placeholder = "Vehicle Make"/>
-            <input type = "search" id = "Model" placeholder = "Vehicle Model"/>
-            <input type = "search" id = "Colour" placeholder = "Vehicle Colour"/>
-            <input type = "search" id = "Owner" placeholder = "Registered Owner"/>
-            <button id ="NVButton" type = "button" value="SUBMIT">SUBMIT</button>
+        <h2> Enter the car info here:</h3>
+            <input type = "search" id = "rego" placeholder = "Registration Number"/>
+            <input type = "search" id = "make" placeholder = "Vehicle Make"/>
+            <input type = "search" id = "model" placeholder = "Vehicle Model"/>
+            <input type = "search" id = "colour" placeholder = "Vehicle Colour"/>
+            <input type = "search" id = "owner" placeholder = "Registered Owner"/>
+            <button id ="NVButton" type = "button" value="Submit">Add Vehicle</button>
+
+            <table id = "message">
+            </table>
+            <table id = "results">
+            </table>
+
     </main>
     <aside class = "sidebar">
-        <img src='newvehicle.jpeg' alt='top banner' height = 150 width = 250/>
+        <img class = "img" src='newvehicle.jpeg' alt='top banner' height = 150 width = 250/>
     </aside>
     <footer class = "footerbit">
         <p> Website created by Kasia Sosin &copy; 2024 </p>

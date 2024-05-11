@@ -8,33 +8,40 @@
     <script src="script.js" type="module" defer></script>
 
 </head>
-    <body class = "baselayout">
+    <body class = "container">
         <header class = "topbar"> 
             <h1> People Search</h1>
             <nav>
                 <ul class = "customlist">
                     <li> <a href = 'index.html'>Home</a></li>
                     <li> <a href = 'Vehicle-search.html'>Vehicle search</a></li>
-                    <li> <a href = 'New-vehicle.html'>Enter New Vehicle</a></li>
+                    <li> <a href = 'Add-a-vehicle.html'>Add a Vehicle</a></li>
                 </ul>
             </nav>
         </header>
         <main class = "maincontent">
-            <h3> Enter the info below:</h3>
+            <h2> Enter the info below:</h3>
             
             <p> Search by Name: </p>
-            <input id = "searchName" type = "text" name = "searchName" placeholder = "Person Name"/>
-            <button id = "nameButton" type = "button" value="SUBMIT">SUBMIT</button>
-
+            <input id = "name" type = "text" name = "searchName" placeholder = "Person Name"/>
             <p> Search by Vehicle Number:</p>
-            <input id = "searchVehicle" type = "text" name = "searchVehicle" placeholder = "Vehicle Registration"/>
-            <button id = "vehicleButton" type = "button" value="SUBMIT">SUBMIT</button>
+            <input id = "license" type = "text" name = "searchVehicle" placeholder = "Vehicle Registration"/>
+            
+            <p> Press here to submit:</p>
+            <button id = "button1" type = "button" value="Submit">Submit</button>
+
+            <table id = "message">
+            </table>
+            <!-- <table id = "results"> -->
+                <div id = "results">
+                
+                </div>
+
+            </table>
 
         </main>
         <aside class = "sidebar">
-            <figure>
-                <img src='person.jpg' alt='top banner' height = 150 width = 200/>
-            </figure>
+            <img class = "img" src='person.jpg' alt='top banner' height = 150 width = 200/>
         </aside>
         <footer class = "footerbit">
             <p> Website created by Kasia Sosin &copy; 2024 </p>
