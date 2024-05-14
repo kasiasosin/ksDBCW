@@ -4,9 +4,10 @@ All aspects of the coursework have been attempted. Information about each sectio
 
 ##  HTML
 
-
+Lighthouse Accessibility Tests: 100% Passed
 
 ## CSS
+
 
 
 

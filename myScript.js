@@ -149,19 +149,135 @@ if (NVButton){
         var colourText = document.getElementById("colour");
         var ownerText = document.getElementById("owner");
 
-        if (regoText.value == "" || makeText == "" || modelText.value == "" || colourText == "" || ownerText.value == ""){
+        if (regoText.value == "" || makeText.value == "" || modelText.value == "" || colourText.value == "" || ownerText.value == ""){
             document.getElementById("message").innerHTML = ("Error - there is missing information");
 
         }else{
-            const {data, error} =  await supabase.from('People').select('Name').ilike('Name', "%"+ownerText.value+"%");
-           
+            const {data, error} =  await supabase.from('People').select('PersonID, Name, Address, DOB, LicenseNumber').ilike('Name', "%"+ownerText.value+"%");           
             // if owner already exists...
             if (data != ""){
-                console.log("user already exists");
-                document.getElementById("results").innerHTML = ("User found: " + data);
-        }
-        }
+                document.getElementById("message").innerHTML = ("User found");
+                document.getElementById("results").innerHTML = ("");
+                document.getElementById("newForm").innerHTML = ("Adding user to the database...");
 
+
+                data.forEach((currItem) => {
+                    // create div 
+                    // add text to div
+                    // add div to page
+                    let row = document.createElement('div');
+                    row.innerHTML = ("Person ID: " + currItem.PersonID + "<br>Name: " + currItem.Name + "<br>Address: " + currItem.Address + "<br>DOB: " + currItem.DOB + "<br>License Number: " + currItem.LicenseNumber);
+                    let row2 = document.createElement('div');
+                    row2.innerHTML = ("<br>");
+                    document.getElementById('results').appendChild(row);
+                    document.getElementById('results').appendChild(row2);
+
+
+
+
+                });
+                // if owner does not currently exist..
+            } else {
+                document.getElementById("message").innerHTML = ("User does not exist<br> <br>Enter form to create new record: ")
+                document.getElementById("results").innerHTML = ("");
+                document.getElementById("newForm").innerHTML = ("");
+
+
+
+                // create div 
+                // add text to div
+                // add div to page
+                let form1 = document.createElement('div');
+                let form2 = document.createElement('form');
+                //form.style.display = "block !important";
+
+                let elem1 = document.createElement('input')
+                elem1.type = 'text';
+                elem1.id = 'personid';
+                elem1.name = 'personid';
+                elem1.placeholder = 'personid';
+
+                let elem2 = document.createElement('input')
+                elem2.type = 'text';
+                elem2.id = 'name';
+                elem2.name = 'name';
+                elem2.placeholder = 'name';
+
+                let elem3 = document.createElement('input')
+                elem3.type = 'text';
+                elem3.id = 'address';
+                elem3.name = 'address';
+                elem3.placeholder = 'address';
+
+                let elem4 = document.createElement('input')
+                elem4.type = 'text';
+                elem4.id = 'dob';
+                elem4.name = 'dob';
+                elem4.placeholder = 'dob';
+
+                let elem5 = document.createElement('input')
+                elem5.type = 'text';
+                elem5.id = 'license';
+                elem5.name = 'license';
+                elem5.placeholder = 'license';
+
+                let elem6 = document.createElement('input')
+                elem6.type = 'text';
+                elem6.id = 'expire';
+                elem6.name = 'expire';
+                elem6.placeholder = 'expire';
+
+                let newUserButton = document.createElement('button');
+                newUserButton.type = 'button';
+                newUserButton.id = 'newUserButton';
+
+                newUserButton.innerHTML = ("Add owner");
+
+                form2.appendChild(elem1);
+                form2.appendChild(elem2);
+                form2.appendChild(elem3);
+                form2.appendChild(elem4);
+                form2.appendChild(elem5);
+                form2.appendChild(elem6);
+                form2.appendChild(newUserButton);
+
+                form1.appendChild(form2);
+                document.getElementById('newForm').appendChild(form1);
+
+                var addOwnerButton = document.getElementById("newUserButton");
+                if (addOwnerButton){
+                    addOwnerButton.addEventListener("click", async () => {
+
+                        var newidText = document.getElementById("personid");
+                        var newNameText = document.getElementById("name");
+                        var newAddressText = document.getElementById("address");
+                        var newDOBText = document.getElementById("dob");
+                        var newLicenseText = document.getElementById("license");
+                        var newExpiryText = document.getElementById("expire");
+
+
+                        if (newidText.value == "" || newNameText.value == "" || newAddressText.value == "" || newDOBText.value == "" || newLicenseText.value == "" || newExpiryText.value == ""){
+                            document.getElementById('results').innerHTML = ("<br>Error - there is missing information<br> You need to fill in the new user form before adding a vehicle.");
+
+                        }else {                                
+
+                            const { error } = await supabase.from('People').insert({ PersonID: newidText, Name: newNameText.value, Address: newAddressText.value, DOB: newDOBText.value, LicenseNumber: newLicenseText.value, ExpiryDate: newExpiryText.value});
+
+                            console.log("new person added to People table")
+
+
+                            //const { error2 } = await supabase.from('Vehicle').insert({ PersonID: newidText, Name: newNameText.value, Address: newAddressText.value, DOB: newDOBText.value, LicenseNumber: newLicenseText.value, ExpiryDate: newExpiryText.value});
+
+
+                        }
+
+                    });
+
+
+                }
+
+            }
+        }
     });
 
 }
@@ -169,7 +285,6 @@ if (NVButton){
 
 
 
-//                const {data1, error1} =  await supabase.insert('Vehicles').select('VehicleID, Make, Model, Colour, OwnerID').ilike('VehicleID', "%"+vehicleTextV.value+"%");
 
 
 
