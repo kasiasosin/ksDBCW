@@ -41,10 +41,7 @@ if (nameButton){
                     // add div to page
                     let row = document.createElement('div');
                     row.innerHTML = ("Vehicle ID: " + currItem.VehicleID + "<br>Vehicle Make: " + currItem.Make + "<br>Vehicle Model: " + currItem.Model + "<br>Vehicle Colour: " + currItem.Colour + "<br>Vehicle Owner ID: " + currItem.OwnerID)
-                    let row2 = document.createElement('div');
-                    row2.innerHTML = ("<br>")
                     document.getElementById('results').appendChild(row);
-                    document.getElementById('results').appendChild(row2);
 
 
                 });
